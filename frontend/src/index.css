@@ -1,0 +1,20 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #fffafa;
+  background-image: url("/sweety-logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 350px auto;
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+}
