@@ -68,13 +68,19 @@ async function isFutureDate(date) {
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT id, reading_date, time_slot, glucose_value, created_at
+      `SELECT
+         id,
+         TO_CHAR(reading_date, 'YYYY-MM-DD') AS reading_date,
+         time_slot,
+         glucose_value,
+         created_at
        FROM readings
        WHERE user_id = $1
        ORDER BY reading_date DESC, id DESC`,
       [req.user.id]
     );
 
+    res.set("Cache-Control", "no-store");
     res.json({ readings: result.rows });
   } catch (error) {
     console.error("Fetch readings failed:", error.message);
